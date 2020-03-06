@@ -1,6 +1,5 @@
 import json
 import os
-import random
 
 import bottle
 from bottle import HTTPResponse
@@ -25,10 +24,10 @@ def start():
     Called every time a new Battlesnake game starts and your snake is in it.
     Your response will control how your snake is displayed on the board.
     """
-    data = bottle.request.json
-    print("START:", json.dumps(data))
+    # data = bottle.request.json
+    # print("START:", json.dumps(data))
 
-    response = {"color": "#00FF00", "headType": "regular", "tailType": "regular"}
+    response = {"color": "#FF0000", "headType": "bwc-ski", "tailType": "bwc-flake"}
     return HTTPResponse(
         status=200,
         headers={"Content-Type": "application/json"},
@@ -124,8 +123,8 @@ def end():
     """
     Called every time a game with your snake in it ends.
     """
-    data = bottle.request.json
-    print("END:", json.dumps(data))
+    # data = bottle.request.json
+    # print("END:", json.dumps(data))
     return HTTPResponse(status=200)
 
 
