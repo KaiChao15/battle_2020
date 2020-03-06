@@ -4,6 +4,8 @@ import os
 import bottle
 from bottle import HTTPResponse
 
+import app.setup
+import app.algorithm
 
 @bottle.route("/")
 def index():
