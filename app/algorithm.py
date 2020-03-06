@@ -188,8 +188,8 @@ class Algorithm:
 
     @staticmethod
     def alphabeta(grid, state, depth, alpha, beta, alphaMove, betaMove, maxPlayer, prev_grid, prev_target_move):
-        if depth == 0:
-            print("Depth", depth)
+        # if depth == 0:
+            # print("Depth", depth)
         # print("maxPlayer:", maxPlayer)
         moves = {}
         my_moves = safezone(state['me']['body'][0], grid, True)
@@ -218,10 +218,12 @@ class Algorithm:
                 or len(moves) == 0
                 or state['me']['health'] <= 0 or state['target']['health'] <= 0
                 or (state['me']['body'][0]['x'] == state['target']['body'][0]['x'] and state['me']['body'][0]['y'] == state['target']['body'][0]['y'])):
-            if depth == MAX_RECURSION_DEPTH:
-                print("Reach Max depth!!!")
-            else:
-                print("Reach end game state")
+
+
+            # if depth == MAX_RECURSION_DEPTH:
+               # print("Reach Max depth!!!")
+            # else:
+                # print("Reach end game state")
 
             return heuristic(grid, state, my_moves, enemy_moves), None
 
@@ -276,7 +278,7 @@ class Algorithm:
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
-                print("Alpha moves choices: ", moves)
+                # print("Alpha moves choices: ", moves)
 
                 newAlpha, tempMove = app.algorithm.Algorithm.alphabeta(new_grid, new_state, depth+1, alpha, beta, alphaMove, betaMove, False, grid, enemy_moves)
                 if newAlpha > alpha:
@@ -286,8 +288,8 @@ class Algorithm:
                 if beta <= alpha:
                     break
 
-            print("alphaMove: ", alphaMove)
-            print("alpha: ", alpha)
+            # print("alphaMove: ", alphaMove)
+            # print("alpha: ", alpha)
 
             return alpha, alphaMove
         else:
@@ -348,7 +350,7 @@ class Algorithm:
                 if beta <= alpha:
                     break
 
-            print("betaMove: ", betaMove)
-            print("beta: ", beta)
+            # print("betaMove: ", betaMove)
+            # print("beta: ", beta)
 
             return beta, betaMove
