@@ -206,10 +206,14 @@ class Algorithm:
         if maxPlayer:
             moves = my_moves
             neck = state['me']['body'][1]
-            print("neck: ", neck)
+            if neck in moves:
+                moves.remove(neck)
             print("my moves:", moves)
         else:
             moves = enemy_moves
+            neck = state['target']['body'][1]
+            if neck in moves:
+                moves.remove(neck)
             print("enemy moves:", moves)
         # print("me: ", state['me']['body'][1]['x'])
         # print("target: ", state['target']['body'][1]['x'])
