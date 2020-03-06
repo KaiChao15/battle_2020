@@ -3,7 +3,7 @@ import copy
 import app.setup
 
 def isSafeFloodFill(v):
-    return v == '.' or v == 'O' or v == '*'
+    return v == '.' or v == 'O'
 
 
 def floodfill(pos, grid, numSafe, length):
@@ -27,7 +27,7 @@ def isSafetoGo(v, failsafe):
     if failsafe:
         return True
     else:
-        return v == '.' or v == 'O' or v == '*'
+        return v == '.' or v == 'O'
 
 
 def safezone(src, grid, failsafe):
@@ -84,6 +84,7 @@ def heuristic(grid, state, my_moves, enemy_moves):
                 # It is a draw, we die anyways
                 # It is not a bounty snake, you need to win to win
                 return -2147483648
+
 
         # My win/lose condition
         if len(my_moves) == 0:
