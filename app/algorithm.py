@@ -205,13 +205,11 @@ class Algorithm:
         # True if calculating alpha at this depth, false if calculating beta
         if maxPlayer:
             moves = my_moves
-            if state['me']['body'][1] in moves:
-                moves.remove(state['me']['body'][1])
+            neck = state['me']['body'][1]
+            print("neck: ", neck)
             print("my moves:", moves)
         else:
             moves = enemy_moves
-            if state['target']['body'][1] in moves:
-                moves.remove(state['me']['body'][1])
             print("enemy moves:", moves)
         # print("me: ", state['me']['body'][1]['x'])
         # print("target: ", state['target']['body'][1]['x'])
