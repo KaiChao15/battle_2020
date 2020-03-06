@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 import bottle
 from bottle import HTTPResponse
@@ -39,6 +40,7 @@ def start():
 
 @bottle.post("/move")
 def move():
+    start = time.time()
     data = bottle.request.json
 
     # decode the JSON file
@@ -112,7 +114,9 @@ def move():
 
     shout = "I am Kai's snake!"
     response = {"move": direction, "shout": shout}
-
+    end = time.time()
+    total_time = end - start
+    print("Time takes: ", total_time)
     return HTTPResponse(
         status=200,
         headers={"Content-Type": "application/json"},
