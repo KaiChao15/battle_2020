@@ -334,6 +334,8 @@ class Algorithm:
                 target_y = new_state['target']['body'][length-1]['y']
                 target_y_other = new_state['target']['body'][length - 2]['y']
 
+                print("length: ", length)
+                print("new grid y: ", new_state['target']['body'][length-1]['y'])
                 if length > 1 and target_x == target_x_other and target_y == target_y_other:
                     new_grid[new_state['target']['body'][length-1]['y']-1][new_state['target']['body'][length-1]['x']-1] = '#'
                 else:

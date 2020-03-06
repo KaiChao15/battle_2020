@@ -72,4 +72,5 @@ class Util:
         elif dst['x'] == src['x'] and dst['y'] == src['y'] - 1:
             return 'up'
         else:
+            print("what the hell?? Got a weird input!!!!!!!")
             return 'up'
