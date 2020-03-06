@@ -272,9 +272,9 @@ class Algorithm:
                 me_y = new_state['me']['body'][length-1]['y']
                 me_y_other = new_state['me']['body'][length - 2]['y']
                 if length > 1 and me_x == me_x_other and me_y == me_y_other:
-                    new_grid[new_state['me']['body'][length-1]['y']-1][new_state['me']['body'][length-1]['x']-1] = '#'
+                    new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '#'
                 else:
-                    new_grid[new_state['me']['body'][length-1]['y']-1][new_state['me']['body'][length-1]['x']-1] = '*'
+                    new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '*'
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
@@ -334,12 +334,11 @@ class Algorithm:
                 target_y = new_state['target']['body'][length-1]['y']
                 target_y_other = new_state['target']['body'][length - 2]['y']
 
-                print("length: ", length)
-                print("new grid y: ", new_state['target']['body'][length-1]['y'])
+
                 if length > 1 and target_x == target_x_other and target_y == target_y_other:
-                    new_grid[new_state['target']['body'][length-1]['y']-1][new_state['target']['body'][length-1]['x']-1] = '#'
+                    new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '#'
                 else:
-                    new_grid[new_state['target']['body'][length-1]['y']-1][new_state['target']['body'][length-1]['x']-1] = '*'
+                    new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '*'
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
