@@ -205,10 +205,10 @@ class Algorithm:
         # True if calculating alpha at this depth, false if calculating beta
         if maxPlayer:
             moves = my_moves
-            # print("my moves:", moves)
+            print("my moves:", moves)
         else:
             moves = enemy_moves
-            # print("enemy moves:", moves)
+            print("enemy moves:", moves)
         # print("me: ", state['me']['body'][1]['x'])
         # print("target: ", state['target']['body'][1]['x'])
 
