@@ -3,7 +3,7 @@ import copy
 import app.setup
 
 def isSafeFloodFill(v):
-    return v == '.' or v == 'O'
+    return v == '.' or v == 'O' or v == '*'
 
 
 def floodfill(pos, grid, numSafe, length):
@@ -27,7 +27,7 @@ def isSafetoGo(v, failsafe):
     if failsafe:
         return True
     else:
-        return v == '.' or v == 'O'
+        return v == '.' or v == 'O' or v == '*'
 
 
 def safezone(src, grid, failsafe):
