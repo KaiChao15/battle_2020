@@ -218,7 +218,7 @@ class Algorithm:
         # print("me: ", state['me']['body'][1]['x'])
         # print("target: ", state['target']['body'][1]['x'])
 
-        MAX_RECURSION_DEPTH = 4
+        MAX_RECURSION_DEPTH = 5
         # use getrecursionlimit to prevent runtime error
 
         if (depth == MAX_RECURSION_DEPTH
