@@ -253,9 +253,9 @@ class Algorithm:
                 ):
                     pass
                 else:
-                    print("grid checking y: ", new_state['me']['body'][body_length]['y'])
+                    print("grid checking y: ", new_state['me']['body'][body_length]['y']-1)
                     print("grid checking x: ", new_state['me']['body'][body_length]['x']-1)
-                    new_grid[new_state['me']['body'][body_length]['y']][new_state['me']['body'][body_length]['x']-1] = '.'
+                    new_grid[new_state['me']['body'][body_length]['y']-1][new_state['me']['body'][body_length]['x']-1] = '.'
 
                 # remove the tail from the state
                 new_state['me']['body'].pop()
@@ -320,9 +320,9 @@ class Algorithm:
                 ):
                     pass
                 else:
-                    print("grid checking y: ", new_state['target']['body'][body_length]['y'])
+                    print("grid checking y: ", new_state['target']['body'][body_length]['y']-1)
                     print("grid checking x: ", new_state['target']['body'][body_length]['x']-1)
-                    new_grid[new_state['target']['body'][body_length]['y']][new_state['target']['body'][body_length]['x']-1] = '.'
+                    new_grid[new_state['target']['body'][body_length]['y']-1][new_state['target']['body'][body_length]['x']-1] = '.'
 
                 new_state['target']['body'].pop()
 
