@@ -208,17 +208,17 @@ class Algorithm:
             neck = state['me']['body'][1]
             if neck in moves:
                 moves.remove(neck)
-            print("my moves:", moves)
+            # print("my moves:", moves)
         else:
             moves = enemy_moves
             neck = state['target']['body'][1]
             if neck in moves:
                 moves.remove(neck)
-            print("enemy moves:", moves)
+            # print("enemy moves:", moves)
         # print("me: ", state['me']['body'][1]['x'])
         # print("target: ", state['target']['body'][1]['x'])
 
-        MAX_RECURSION_DEPTH = 6
+        MAX_RECURSION_DEPTH = 8
         # use getrecursionlimit to prevent runtime error
 
         if (depth == MAX_RECURSION_DEPTH
