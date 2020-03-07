@@ -191,181 +191,176 @@ class Algorithm:
 
     @staticmethod
     def alphabeta(grid, state, depth, alpha, beta, alphaMove, betaMove, maxPlayer, prev_grid, prev_target_move):
-        print("Depth", depth)
+        # if depth == 0:
+            # print("Depth", depth)
         # print("maxPlayer:", maxPlayer)
         moves = {}
         my_moves = safezone(state['me']['body'][0], grid, True)
         enemy_moves = {}
 
-        # at the lowest choice only one choice
-        if depth == 5 and len(my_moves) == 1:
-            only_move = my_moves[0]
-            only_score = 9999999
-            return only_score, only_move
+        # get the target moves
+        if maxPlayer:
+            enemy_moves = safezone(state['target']['body'][0], grid, True)
         else:
-            # get the target moves
-            if maxPlayer:
-                enemy_moves = safezone(state['target']['body'][0], grid, True)
-            else:
-                enemy_moves = prev_target_move
+            enemy_moves = prev_target_move
 
-            # True if calculating alpha at this depth, false if calculating beta
-            if maxPlayer:
-                moves = my_moves
-                neck = state['me']['body'][1]
-                if neck in moves:
-                    moves.remove(neck)
-                print("my moves:", moves)
-            else:
-                moves = enemy_moves
-                neck = state['target']['body'][1]
-                if neck in moves:
-                    moves.remove(neck)
-                # print("enemy moves:", moves)
-            # print("me: ", state['me']['body'][1]['x'])
-            # print("target: ", state['target']['body'][1]['x'])
+        # True if calculating alpha at this depth, false if calculating beta
+        if maxPlayer:
+            moves = my_moves
+            neck = state['me']['body'][1]
+            if neck in moves:
+                moves.remove(neck)
+            print("my moves:", moves)
+        else:
+            moves = enemy_moves
+            neck = state['target']['body'][1]
+            if neck in moves:
+                moves.remove(neck)
+            # print("enemy moves:", moves)
+        # print("me: ", state['me']['body'][1]['x'])
+        # print("target: ", state['target']['body'][1]['x'])
 
-            MAX_RECURSION_DEPTH = 5
-            # use getrecursionlimit to prevent runtime error
+        MAX_RECURSION_DEPTH = 5
+        # use getrecursionlimit to prevent runtime error
 
-            if (depth == MAX_RECURSION_DEPTH
-                    or len(moves) == 0
-                    or state['me']['health'] <= 0 or state['target']['health'] <= 0
-                    or (state['me']['body'][0]['x'] == state['target']['body'][0]['x'] and state['me']['body'][0]['y'] == state['target']['body'][0]['y'])):
+        if (depth == MAX_RECURSION_DEPTH
+                or len(moves) == 0
+                or state['me']['health'] <= 0 or state['target']['health'] <= 0
+                or (state['me']['body'][0]['x'] == state['target']['body'][0]['x'] and state['me']['body'][0]['y'] == state['target']['body'][0]['y'])):
 
 
-                # if depth == MAX_RECURSION_DEPTH:
-                   # print("Reach Max depth!!!")
-                # else:
-                    # print("Reach end game state")
+            # if depth == MAX_RECURSION_DEPTH:
+               # print("Reach Max depth!!!")
+            # else:
+                # print("Reach end game state")
 
-                return heuristic(grid, state, my_moves, enemy_moves), None
+            return heuristic(grid, state, my_moves, enemy_moves), None
 
-            if maxPlayer:
-                for i in range(len(moves)):
-                    new_grid = copy.deepcopy(grid)
-                    new_state = copy.deepcopy(state)
+        if maxPlayer:
+            for i in range(len(moves)):
+                new_grid = copy.deepcopy(grid)
+                new_state = copy.deepcopy(state)
+                eating = False
+
+                if new_grid[moves[i]['y']-1][moves[i]['x']-1] == 'O':
+                    eating = True
+                    new_state['me']['health'] = 100
+                else:
+                    new_state['me']['health'] = new_state['me']['health'] - 1
+
+                body_length = len(state['me']['body']) - 1
+                if (body_length > 1 and
+                        (new_state['me']['body'][body_length]['x'] == new_state['me']['body'][body_length]['x'] and
+                         new_state['me']['body'][body_length]['y'] == new_state['me']['body'][body_length]['y'])
+                ):
+                    pass
+                else:
+                    new_grid[new_state['me']['body'][body_length]['y']-2][new_state['me']['body'][body_length]['x']-2] = '.'
+
+                # remove the tail from the state
+                new_state['me']['body'].pop()
+
+                # move head in state and on grid
+                if body_length > 1:
+                    new_grid[new_state['me']['body'][0]['y']-1][new_state['me']['body'][0]['x']-1] = '#'
+
+                new_state['me']['body'].insert(0, moves[i])
+                new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
+
+                # if eating, add to snake's body
+                if eating:
+                    x = new_state['me']['body'][body_length-1]['x'] + 1
+                    y = new_state['me']['body'][body_length-1]['y'] + 1
+                    new_state['me']['body'].append({"x": y, "y": x})
                     eating = False
 
-                    if new_grid[moves[i]['y']-1][moves[i]['x']-1] == 'O':
-                        eating = True
-                        new_state['me']['health'] = 100
-                    else:
-                        new_state['me']['health'] = new_state['me']['health'] - 1
+                # mark whether is safe spot or not
+                length = len(new_state['me']['body'])
+                me_x = new_state['me']['body'][length-1]['x']
+                me_x_other = new_state['me']['body'][length - 2]['x']
+                me_y = new_state['me']['body'][length-1]['y']
+                me_y_other = new_state['me']['body'][length - 2]['y']
+                if length > 1 and me_x == me_x_other and me_y == me_y_other:
+                    new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '#'
+                else:
+                    new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '*'
 
-                    body_length = len(state['me']['body']) - 1
-                    if (body_length > 1 and
-                            (new_state['me']['body'][body_length]['x'] == new_state['me']['body'][body_length]['x'] and
-                             new_state['me']['body'][body_length]['y'] == new_state['me']['body'][body_length]['y'])
-                    ):
-                        pass
-                    else:
-                        new_grid[new_state['me']['body'][body_length]['y']-2][new_state['me']['body'][body_length]['x']-2] = '.'
+                # print out new map
+                # app.setup.Util.printMap(new_grid)
+                # print("Alpha moves choices: ", moves)
 
-                    # remove the tail from the state
-                    new_state['me']['body'].pop()
+                newAlpha, tempMove = app.algorithm.Algorithm.alphabeta(new_grid, new_state, depth+1, alpha, beta, alphaMove, betaMove, False, grid, enemy_moves)
+                if newAlpha > alpha:
+                    alpha = newAlpha
+                    alphaMove = moves[i]
 
-                    # move head in state and on grid
-                    if body_length > 1:
-                        new_grid[new_state['me']['body'][0]['y']-1][new_state['me']['body'][0]['x']-1] = '#'
+                if beta <= alpha:
+                    break
 
-                    new_state['me']['body'].insert(0, moves[i])
-                    new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
+            # print("alphaMove: ", alphaMove)
+            # print("alpha: ", alpha)
 
-                    # if eating, add to snake's body
-                    if eating:
-                        x = new_state['me']['body'][body_length-1]['x'] + 1
-                        y = new_state['me']['body'][body_length-1]['y'] + 1
-                        new_state['me']['body'].append({"x": y, "y": x})
-                        eating = False
+            return alpha, alphaMove
+        else:
+            for i in range(len(moves)):
+                new_grid = copy.deepcopy(grid)
+                new_state = copy.deepcopy(state)
+                eating = False
 
-                    # mark whether is safe spot or not
-                    length = len(new_state['me']['body'])
-                    me_x = new_state['me']['body'][length-1]['x']
-                    me_x_other = new_state['me']['body'][length - 2]['x']
-                    me_y = new_state['me']['body'][length-1]['y']
-                    me_y_other = new_state['me']['body'][length - 2]['y']
-                    if length > 1 and me_x == me_x_other and me_y == me_y_other:
-                        new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '#'
-                    else:
-                        new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '*'
+                if prev_grid[moves[i]['y']-1][moves[i]['x']-1] == 'O':
+                    eating = True
+                    new_state['target']['health'] = 100
+                else:
+                    new_state['target']['health'] = new_state['target']['health'] - 1
 
-                    # print out new map
-                    # app.setup.Util.printMap(new_grid)
-                    # print("Alpha moves choices: ", moves)
+                body_length = len(state['target']['body']) - 1
+                if (body_length > 1 and
+                        (new_state['target']['body'][body_length]['x'] == new_state['target']['body'][body_length-1]['x'] and
+                         new_state['target']['body'][body_length]['y'] == new_state['target']['body'][body_length-1]['y'])
+                ):
+                    pass
+                else:
+                    new_grid[new_state['target']['body'][body_length]['y']-2][new_state['target']['body'][body_length]['x']-2] = '.'
 
-                    newAlpha, tempMove = app.algorithm.Algorithm.alphabeta(new_grid, new_state, depth+1, alpha, beta, alphaMove, betaMove, False, grid, enemy_moves)
-                    if newAlpha > alpha:
-                        alpha = newAlpha
-                        alphaMove = moves[i]
+                new_state['target']['body'].pop()
 
-                    if beta <= alpha:
-                        break
+                if body_length > 1:
+                    new_grid[new_state['target']['body'][0]['y']-1][new_state['target']['body'][0]['x']-1] = '#'
 
-                # print("alphaMove: ", alphaMove)
-                # print("alpha: ", alpha)
+                new_state['target']['body'].insert(0, moves[i])
+                new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
 
-                return alpha, alphaMove
-            else:
-                for i in range(len(moves)):
-                    new_grid = copy.deepcopy(grid)
-                    new_state = copy.deepcopy(state)
+                if eating:
+                    x = new_state['target']['body'][body_length]['x'] + 1
+                    y = new_state['target']['body'][body_length]['y'] + 1
+                    new_state['target']['body'].append({"x": y, "y": x})
                     eating = False
 
-                    if prev_grid[moves[i]['y']-1][moves[i]['x']-1] == 'O':
-                        eating = True
-                        new_state['target']['health'] = 100
-                    else:
-                        new_state['target']['health'] = new_state['target']['health'] - 1
-
-                    body_length = len(state['target']['body']) - 1
-                    if (body_length > 1 and
-                            (new_state['target']['body'][body_length]['x'] == new_state['target']['body'][body_length-1]['x'] and
-                             new_state['target']['body'][body_length]['y'] == new_state['target']['body'][body_length-1]['y'])
-                    ):
-                        pass
-                    else:
-                        new_grid[new_state['target']['body'][body_length]['y']-2][new_state['target']['body'][body_length]['x']-2] = '.'
-
-                    new_state['target']['body'].pop()
-
-                    if body_length > 1:
-                        new_grid[new_state['target']['body'][0]['y']-1][new_state['target']['body'][0]['x']-1] = '#'
-
-                    new_state['target']['body'].insert(0, moves[i])
-                    new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
-
-                    if eating:
-                        x = new_state['target']['body'][body_length]['x'] + 1
-                        y = new_state['target']['body'][body_length]['y'] + 1
-                        new_state['target']['body'].append({"x": y, "y": x})
-                        eating = False
-
-                    # print(new_state)
-                    length = len(new_state['target']['body'])
-                    target_x = new_state['target']['body'][length-1]['x']
-                    target_x_other = new_state['target']['body'][length - 2]['x']
-                    target_y = new_state['target']['body'][length-1]['y']
-                    target_y_other = new_state['target']['body'][length - 2]['y']
+                # print(new_state)
+                length = len(new_state['target']['body'])
+                target_x = new_state['target']['body'][length-1]['x']
+                target_x_other = new_state['target']['body'][length - 2]['x']
+                target_y = new_state['target']['body'][length-1]['y']
+                target_y_other = new_state['target']['body'][length - 2]['y']
 
 
-                    if length > 1 and target_x == target_x_other and target_y == target_y_other:
-                        new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '#'
-                    else:
-                        new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '*'
+                if length > 1 and target_x == target_x_other and target_y == target_y_other:
+                    new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '#'
+                else:
+                    new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '*'
 
-                    # print out new map
-                    # app.setup.Util.printMap(new_grid)
+                # print out new map
+                # app.setup.Util.printMap(new_grid)
 
-                    newBeta, tempMove = app.algorithm.Algorithm.alphabeta(new_grid, new_state, depth + 1, alpha, beta, alphaMove, betaMove, True, {}, {})
-                    if newBeta < beta:
-                        beta = newBeta
-                        betaMove = moves[i]
+                newBeta, tempMove = app.algorithm.Algorithm.alphabeta(new_grid, new_state, depth + 1, alpha, beta, alphaMove, betaMove, True, {}, {})
+                if newBeta < beta:
+                    beta = newBeta
+                    betaMove = moves[i]
 
-                    if beta <= alpha:
-                        break
+                if beta <= alpha:
+                    break
 
-                # print("betaMove: ", betaMove)
-                # print("beta: ", beta)
+            # print("betaMove: ", betaMove)
+            # print("beta: ", beta)
 
-                return beta, betaMove
+            return beta, betaMove
