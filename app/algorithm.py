@@ -208,7 +208,7 @@ class Algorithm:
             neck = state['me']['body'][1]
             if neck in moves:
                 moves.remove(neck)
-            # print("my moves:", moves)
+            print("my moves:", moves)
         else:
             moves = enemy_moves
             neck = state['target']['body'][1]
