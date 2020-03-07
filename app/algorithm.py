@@ -77,7 +77,7 @@ def heuristic(grid, state, my_moves, enemy_moves):
             if len(state['me']['body']) > len(state['target']['body']):
                 # I am bigger, I win
                 score = score + 2147483647
-            elif len(state['me']['body']) < len(state['target']['body']):
+            elif len(state['me']['body']) <= len(state['target']['body']):
                 # I am smaller, I lose
                 return -2147483648
             else:
