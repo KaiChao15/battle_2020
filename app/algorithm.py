@@ -76,8 +76,10 @@ def heuristic(grid, state, my_moves, enemy_moves):
             # checking size
             if len(state['me']['body']) > len(state['target']['body']):
                 # I am bigger, I win
+                print("I am bigger. Go for kill!!!!")
                 score = score + 2147483647
             elif len(state['me']['body']) <= len(state['target']['body']):
+                print("let's run!!! I am small or same!!!!")
                 # I am smaller, I lose
                 return -2147483648
             else:
