@@ -85,7 +85,7 @@ def move():
         for i in range(len(game_state['board']['snakes'])):
             # check the target is not myself
             if game_state['board']['snakes'][i]['id'] != me['id']:
-                d = app.setup.Util.mandis(me['body'][1], game_state['board']['snakes'][i]['body'][1])
+                d = app.setup.Util.mandis(me['body'][0], game_state['board']['snakes'][i]['body'][0])
 
                 if d < target_dis:
                     target_dis = d
