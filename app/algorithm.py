@@ -253,7 +253,7 @@ class Algorithm:
                 ):
                     pass
                 else:
-                    new_grid[new_state['me']['body'][body_length]['y']-1][new_state['me']['body'][body_length]['x']-1] = '.'
+                    new_grid[new_state['me']['body'][body_length]['y']][new_state['me']['body'][body_length]['x']] = '.'
 
                 # remove the tail from the state
                 new_state['me']['body'].pop()
@@ -318,7 +318,7 @@ class Algorithm:
                 ):
                     pass
                 else:
-                    new_grid[new_state['target']['body'][body_length]['y']-1][new_state['target']['body'][body_length]['x']-1] = '.'
+                    new_grid[new_state['target']['body'][body_length]['y']][new_state['target']['body'][body_length]['x']] = '.'
 
                 new_state['target']['body'].pop()
 
