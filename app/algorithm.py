@@ -198,6 +198,10 @@ class Algorithm:
         my_moves = safezone(state['me']['body'][0], grid, True)
         enemy_moves = {}
 
+        if len(my_moves) == 1:
+            only_move = my_moves[0]
+            only_score = 9999999
+            return only_score, only_move
         # get the target moves
         if maxPlayer:
             enemy_moves = safezone(state['target']['body'][0], grid, True)
