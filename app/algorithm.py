@@ -50,22 +50,22 @@ def safezone(src, grid, failsafe):
     # print("width: ", width)
 
     if 0 < up['y'] <= height:
-        print("Grid up position is: ", grid[up['y'] - 1][up['x'] - 1])
+        # print("Grid up position is: ", grid[up['y'] - 1][up['x'] - 1])
         if grid[up['y']-1][up['x']-1] == '.' or grid[up['y']-1][up['x']-1] == 'O' or grid[up['y']-1][up['x']-1] == '#':
             safe.append(up)
 
     if 0 < down['y'] <= height:
-        print("Grid down position is: ", grid[down['y'] - 1][down['x'] - 1])
+        # print("Grid down position is: ", grid[down['y'] - 1][down['x'] - 1])
         if grid[down['y'] - 1][down['x'] - 1] == '.' or grid[down['y'] - 1][down['x'] - 1] == 'O' or grid[down['y']-1][down['x']-1] == '#':
             safe.append(down)
 
     if 0 < right['x'] <= width:
-        print("Grid right position is: ", grid[right['y'] - 1][right['x'] - 1])
+        # print("Grid right position is: ", grid[right['y'] - 1][right['x'] - 1])
         if grid[right['y'] - 1][right['x'] - 1] == '.' or grid[right['y'] - 1][right['x'] - 1] == 'O' or grid[right['y']-1][right['x']-1] == '#':
             safe.append(right)
 
     if 0 < left['x'] <= width:
-        print("Grid left position is: ", grid[left['y'] - 1][left['x'] - 1])
+        # print("Grid left position is: ", grid[left['y'] - 1][left['x'] - 1])
         if grid[left['y'] - 1][left['x'] - 1] == '.' or grid[left['y'] - 1][left['x'] - 1] == 'O' or grid[left['y']-1][left['x']-1] == '#':
             safe.append(left)
 
