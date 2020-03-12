@@ -29,6 +29,18 @@ def isSafetoGo(v, failsafe):
     else:
         return v == '.' or v == 'O'
 
+def printGridStatus(src, grid):
+    up = {'x': src['x'], 'y': src['y'] - 1}
+    down = {'x': src['x'], 'y': src['y'] + 1}
+    right = {'x': src['x'] + 1, 'y': src['y']}
+    left = {'x': src['x'] - 1, 'y': src['y']}
+    print("==========Grid checking point===========")
+    print("Grid up position is: ", grid[up['y'] - 1][up['x'] - 1])
+    print("Grid down position is: ", grid[down['y'] - 1][down['x'] - 1])
+    print("Grid right position is: ", grid[right['y'] - 1][right['x'] - 1])
+    print("Grid left position is: ", grid[left['y'] - 1][left['x'] - 1])
+    print("==========Grid checking end=============")
+
 
 def safezone(src, grid, failsafe):
     safe = []
@@ -48,27 +60,22 @@ def safezone(src, grid, failsafe):
 
     # print("height: ", height)
     # print("width: ", width)
-    print("==========Grid checking point===========")
     if 0 < up['y'] <= height:
         if grid[up['y']-1][up['x']-1] == '.' or grid[up['y']-1][up['x']-1] == 'O' or grid[up['y']-1][up['x']-1] == '*':
-            print("Grid up position is: ", grid[up['y'] - 1][up['x'] - 1])
             safe.append(up)
 
     if 0 < down['y'] <= height:
         if grid[down['y'] - 1][down['x'] - 1] == '.' or grid[down['y'] - 1][down['x'] - 1] == 'O' or grid[down['y']-1][down['x']-1] == '*':
-            print("Grid down position is: ", grid[down['y'] - 1][down['x'] - 1])
             safe.append(down)
 
     if 0 < right['x'] <= width:
         if grid[right['y'] - 1][right['x'] - 1] == '.' or grid[right['y'] - 1][right['x'] - 1] == 'O' or grid[right['y']-1][right['x']-1] == '*':
-            print("Grid right position is: ", grid[right['y'] - 1][right['x'] - 1])
             safe.append(right)
 
     if 0 < left['x'] <= width:
         if grid[left['y'] - 1][left['x'] - 1] == '.' or grid[left['y'] - 1][left['x'] - 1] == 'O' or grid[left['y']-1][left['x']-1] == '*':
-            print("Grid left position is: ", grid[left['y'] - 1][left['x'] - 1])
             safe.append(left)
-    print("==========Grid checking end=============")
+
     return safe
 
 
