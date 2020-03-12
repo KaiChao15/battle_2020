@@ -1,6 +1,7 @@
 import json
 import os
 import time
+import random
 
 import bottle
 from bottle import HTTPResponse
@@ -108,6 +109,13 @@ def move():
     print("Best Score: " + str(bestScore))
     print("Best move ", bestMove)
     print("My current position: ", me['body'][0])
+
+    # There are no bestMove, just chose one safe option to go.
+    if bestMove is None:
+        betterMove = app.algorithm.safezone(cur_state['me']['body'][0], grid, True)
+        print("No best move from the alpha-beta... Try better choice!")
+        print("Better choice: ", betterMove)
+        bestMove = random.choice(betterMove)
 
     direction = app.setup.Util.distance(me['body'][0], bestMove)
     print("direction", direction)
