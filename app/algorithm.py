@@ -48,7 +48,7 @@ def safezone(src, grid, failsafe):
 
     # print("height: ", height)
     # print("width: ", width)
-
+    print("==========Grid checking point===========")
     if 0 < up['y'] <= height:
         if grid[up['y']-1][up['x']-1] == '.' or grid[up['y']-1][up['x']-1] == 'O' or grid[up['y']-1][up['x']-1] == '*':
             print("Grid up position is: ", grid[up['y'] - 1][up['x'] - 1])
@@ -68,7 +68,7 @@ def safezone(src, grid, failsafe):
         if grid[left['y'] - 1][left['x'] - 1] == '.' or grid[left['y'] - 1][left['x'] - 1] == 'O' or grid[left['y']-1][left['x']-1] == '*':
             print("Grid left position is: ", grid[left['y'] - 1][left['x'] - 1])
             safe.append(left)
-
+    print("==========Grid checking end=============")
     return safe
 
 
