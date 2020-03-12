@@ -32,7 +32,7 @@ class Util:
                     y = board['snakes'][i]['body'][j]['y'] - 1
                     grid[y][x] = '@'
                 # tail
-                elif j == body_length - 2:
+                elif j == body_length - 1:
                     x = board['snakes'][i]['body'][j]['x'] - 1
                     y = board['snakes'][i]['body'][j]['y'] - 1
                     grid[y][x] = '*'
