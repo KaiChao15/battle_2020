@@ -1,6 +1,7 @@
 import json
 import os
 import time
+import random
 
 import cherrypy
 
@@ -33,7 +34,6 @@ class Battlesnake(object):
     def start(self):
         # This function is called everytime your snake is entered into a game.
         # cherrypy.request.json contains information about the game that's about to be played.
-        start = time.time()
         data = cherrypy.request.json
 
         print("START")
@@ -45,7 +45,7 @@ class Battlesnake(object):
     def move(self):
         # This function is called on every turn of a game. It's how your snake decides where to move.
         # Valid moves are "up", "down", "left", or "right".
-        # TODO: Use the information in cherrypy.request.json to decide your next move.
+        start = time.time()
         data = cherrypy.request.json
 
         # decode the JSON file
