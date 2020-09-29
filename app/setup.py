@@ -67,9 +67,9 @@ class Util:
             return "right"
         elif dst['x'] == src['x'] - 1 and dst['y'] == src['y']:
             return "left"
-        elif dst['x'] == src['x'] and dst['y'] == src['y'] + 1:
-            return "down"
         elif dst['x'] == src['x'] and dst['y'] == src['y'] - 1:
+            return "down"
+        elif dst['x'] == src['x'] and dst['y'] == src['y'] + 1:
             return "up"
         else:
             print("what the hell?? Got a weird input!!!!!!!")
