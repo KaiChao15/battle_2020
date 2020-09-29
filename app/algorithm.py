@@ -44,8 +44,8 @@ def printGridStatus(src, grid):
 
 def safezone(src, grid, failsafe):
     safe = []
-    up = {'x': src['x'], 'y': src['y'] - 1}
-    down = {'x': src['x'], 'y': src['y'] + 1}
+    up = {'x': src['x'], 'y': src['y'] + 1}
+    down = {'x': src['x'], 'y': src['y'] - 1}
     right = {'x': src['x'] + 1, 'y': src['y']}
     left = {'x': src['x'] - 1, 'y': src['y']}
 
