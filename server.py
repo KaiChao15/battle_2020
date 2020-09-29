@@ -130,8 +130,6 @@ class Battlesnake(object):
         total_time = end - start
         print("Time takes: ", total_time)
 
-
-        print(f"MOVE: {direction}")
         return {"move": direction}
 
     @cherrypy.expose
