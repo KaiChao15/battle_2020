@@ -351,6 +351,11 @@ class Algorithm:
                     x = new_state['target']['body'][body_length]['x']
                     y = new_state['target']['body'][body_length]['y']
                     new_state['target']['body'].append({"x": y, "y": x})
+                    print("====================================")
+                    print("TARGET ATE FOOD!!!!")
+                    print("x: ", x)
+                    print("y: ", y)
+                    print("====================================")
                     eating = False
 
                 # print(new_state)
