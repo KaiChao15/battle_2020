@@ -3,7 +3,7 @@ import copy
 import app.setup
 
 def isSafeFloodFill(v):
-    return v == '.' or v == 'O'
+    return v == '.' or v == 'O' or v == '*'
 
 
 def floodfill(pos, grid, numSafe, length):
@@ -283,6 +283,11 @@ class Algorithm:
                 if eating:
                     x = new_state['me']['body'][body_length]['x']
                     y = new_state['me']['body'][body_length]['y']
+                    print("====================================")
+                    print("ATE FOOD!!!!")
+                    print("x: ", x)
+                    print("y: ", y)
+                    print("====================================")
                     new_state['me']['body'].append({"x": y, "y": x})
                     eating = False
 
@@ -343,8 +348,8 @@ class Algorithm:
                 new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
 
                 if eating:
-                    x = new_state['target']['body'][body_length]['x'] + 1
-                    y = new_state['target']['body'][body_length]['y'] + 1
+                    x = new_state['target']['body'][body_length]['x']
+                    y = new_state['target']['body'][body_length]['y']
                     new_state['target']['body'].append({"x": y, "y": x})
                     eating = False
 
