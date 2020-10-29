@@ -281,8 +281,8 @@ class Algorithm:
 
                 # if eating, add to snake's body
                 if eating:
-                    x = new_state['me']['body'][body_length-1]['x'] + 1
-                    y = new_state['me']['body'][body_length-1]['y'] + 1
+                    x = new_state['me']['body'][body_length-1]['x']
+                    y = new_state['me']['body'][body_length-1]['y']
                     new_state['me']['body'].append({"x": y, "y": x})
                     eating = False
 
