@@ -153,7 +153,7 @@ def heuristic(grid, state, my_moves, enemy_moves):
             score = score + 9999999
 
         foodweight = 0
-        LOW_FOOD = 8
+        LOW_FOOD = 5
         HUNGER_HEALTH = 60
 
         if len(food) <= LOW_FOOD:
