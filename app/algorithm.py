@@ -153,7 +153,7 @@ def heuristic(grid, state, my_moves, enemy_moves):
             score = score + 9999999
 
         foodweight = 0
-        LOW_FOOD = 10
+        LOW_FOOD = 9
         HUNGER_HEALTH = 40
 
         if len(food) <= LOW_FOOD:
@@ -232,7 +232,7 @@ class Algorithm:
         # print("target: ", state['target']['body'][1]['x'])
 
         # sometime it run overtime, try 4 first (5 --> 4)
-        MAX_RECURSION_DEPTH = 4
+        MAX_RECURSION_DEPTH = 5
         # use getrecursionlimit to prevent runtime error
 
         if (depth == MAX_RECURSION_DEPTH
