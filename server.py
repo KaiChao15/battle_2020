@@ -25,7 +25,7 @@ class Battlesnake(object):
             "apiversion": "1",
             "author": "Rubelliguis",
             "color": "#ff3838",
-            "head": "bwc-earmuffs",
+            "head": "bfl-jackolantern",
             "tail": "hook",
         }
 
@@ -71,10 +71,10 @@ class Battlesnake(object):
             game_state['you']['body'][i]['x'] = game_state['you']['body'][i]['x'] + 1
             game_state['you']['body'][i]['y'] = game_state['you']['body'][i]['y'] + 1
 
-        print("Finish converting -- PASSED")
+        # print("Finish converting -- PASSED")
 
         grid = app.setup.Util.buildWorldMap(game_state)
-        print("Building World Map... -- PASSED")
+        # print("Building World Map... -- PASSED")
 
         # print out the current game state map
         # app.setup.Util.printMap(grid)

@@ -27,7 +27,7 @@ def isSafetoGo(v, failsafe):
     if failsafe:
         return True
     else:
-        return v == '.' or v == 'O'
+        return v == '.' or v == 'O' or v == '*'
 
 def printGridStatus(src, grid):
     up = {'x': src['x'], 'y': src['y'] - 1}
@@ -153,7 +153,7 @@ def heuristic(grid, state, my_moves, enemy_moves):
             score = score + 9999999
 
         foodweight = 0
-        LOW_FOOD = 8
+        LOW_FOOD = 10
         HUNGER_HEALTH = 40
 
         if len(food) <= LOW_FOOD:
@@ -231,7 +231,8 @@ class Algorithm:
         # print("me: ", state['me']['body'][1]['x'])
         # print("target: ", state['target']['body'][1]['x'])
 
-        MAX_RECURSION_DEPTH = 5
+        # sometime it run overtime, try 4 first (5 --> 4)
+        MAX_RECURSION_DEPTH = 4
         # use getrecursionlimit to prevent runtime error
 
         if (depth == MAX_RECURSION_DEPTH
