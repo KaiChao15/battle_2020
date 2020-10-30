@@ -284,6 +284,7 @@ class Algorithm:
 
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body'])
+                print("new length:", length)
                 me_x = new_state['me']['body'][length]['x']
                 me_x_other = new_state['me']['body'][length - 1]['x']
                 me_y = new_state['me']['body'][length]['y']
@@ -350,6 +351,7 @@ class Algorithm:
 
                 # print(new_state)
                 length = len(new_state['target']['body'])
+                print("new length:", length)
                 target_x = new_state['target']['body'][length]['x']
                 target_x_other = new_state['target']['body'][length - 1]['x']
                 target_y = new_state['target']['body'][length]['y']
