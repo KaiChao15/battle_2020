@@ -284,10 +284,10 @@ class Algorithm:
 
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body'])
-                me_x = new_state['me']['body'][length - 1]['x']
-                me_x_other = new_state['me']['body'][length - 2]['x']
-                me_y = new_state['me']['body'][length - 1]['y']
-                me_y_other = new_state['me']['body'][length - 2]['y']
+                me_x = new_state['me']['body'][length]['x']
+                me_x_other = new_state['me']['body'][length - 1]['x']
+                me_y = new_state['me']['body'][length]['y']
+                me_y_other = new_state['me']['body'][length - 1]['y']
                 print("=========================================")
                 print("me_x, me_x_other: ", me_x, ",", me_x_other)
                 print("me_y, me_y_other: ", me_x, ",", me_x_other)
@@ -350,10 +350,10 @@ class Algorithm:
 
                 # print(new_state)
                 length = len(new_state['target']['body'])
-                target_x = new_state['target']['body'][length - 1]['x']
-                target_x_other = new_state['target']['body'][length - 2]['x']
-                target_y = new_state['target']['body'][length - 1]['y']
-                target_y_other = new_state['target']['body'][length - 2]['y']
+                target_x = new_state['target']['body'][length]['x']
+                target_x_other = new_state['target']['body'][length - 1]['x']
+                target_y = new_state['target']['body'][length]['y']
+                target_y_other = new_state['target']['body'][length - 1]['y']
                 print("=========================================")
                 print("target_x, target_x_other: ", target_x, ",", target_x_other)
                 print("target_y, target_y_other: ", target_y, ",", target_y_other)
