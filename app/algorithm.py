@@ -288,20 +288,14 @@ class Algorithm:
                 me_x_other = new_state['me']['body'][length - 2]['x']
                 me_y = new_state['me']['body'][length - 1]['y']
                 me_y_other = new_state['me']['body'][length - 2]['y']
+                print("=========================================")
+                print("me_x, me_x_other: ", me_x, ",", me_x_other)
+                print("me_y, me_y_other: ", me_x, ",", me_x_other)
+                print("=========================================")
                 if length > 1 and me_x == me_x_other and me_y == me_y_other:
                     new_grid[me_y][me_x] = '#'
-                    print("==================================================================")
-                    print("the tail will stay in the same place because the snake just ate...")
-                    print("me_y:")
-                    print(me_y)
-                    print("me_x")
-                    print(me_x)
-                    print("==================================================================")
                 else:
                     new_grid[me_y][me_x] = '*'
-                    print("==================================================================")
-                    print("the tail is safe")
-                    print("==================================================================")
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
@@ -360,7 +354,6 @@ class Algorithm:
                 target_x_other = new_state['target']['body'][length - 2]['x']
                 target_y = new_state['target']['body'][length - 1]['y']
                 target_y_other = new_state['target']['body'][length - 2]['y']
-
 
                 if length > 1 and target_x == target_x_other and target_y == target_y_other:
                     new_grid[target_y][target_x] = '#'
