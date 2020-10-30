@@ -293,9 +293,9 @@ class Algorithm:
                 print("me_y, me_y_other: ", me_x, ",", me_x_other)
                 print("=========================================")
                 if length > 1 and me_x == me_x_other and me_y == me_y_other:
-                    new_grid[me_y][me_x] = '#'
+                    new_grid[me_y-1][me_x-1] = '#'
                 else:
-                    new_grid[me_y][me_x] = '*'
+                    new_grid[me_y-1][me_x-1] = '*'
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
@@ -354,11 +354,15 @@ class Algorithm:
                 target_x_other = new_state['target']['body'][length - 2]['x']
                 target_y = new_state['target']['body'][length - 1]['y']
                 target_y_other = new_state['target']['body'][length - 2]['y']
+                print("=========================================")
+                print("target_x, target_x_other: ", target_x, ",", target_x_other)
+                print("target_y, target_y_other: ", target_y, ",", target_y_other)
+                print("=========================================")
 
                 if length > 1 and target_x == target_x_other and target_y == target_y_other:
-                    new_grid[target_y][target_x] = '#'
+                    new_grid[target_y-1][target_x-1] = '#'
                 else:
-                    new_grid[target_y][target_x] = '*'
+                    new_grid[target_y-1][target_x-1] = '*'
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
