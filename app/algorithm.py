@@ -281,8 +281,8 @@ class Algorithm:
 
                 # if eating, add to snake's body
                 if eating:
-                    x = new_state['me']['body'][body_length -1]['x']
-                    y = new_state['me']['body'][body_length -1]['y']
+                    x = new_state['me']['body'][body_length]['x']
+                    y = new_state['me']['body'][body_length]['y']
                     print("====================================")
                     print("ATE FOOD!!!!")
                     print("x: ", x)
@@ -348,8 +348,8 @@ class Algorithm:
                 new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
 
                 if eating:
-                    x = new_state['target']['body'][body_length -1]['x']
-                    y = new_state['target']['body'][body_length -1]['y']
+                    x = new_state['target']['body'][body_length]['x']
+                    y = new_state['target']['body'][body_length]['y']
                     new_state['target']['body'].append({"x": y, "y": x})
                     print("====================================")
                     print("TARGET ATE FOOD!!!!")
