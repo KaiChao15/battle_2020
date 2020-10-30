@@ -202,9 +202,7 @@ class Algorithm:
 
     @staticmethod
     def alphabeta(grid, state, depth, alpha, beta, alphaMove, betaMove, maxPlayer, prev_grid, prev_target_move):
-        # if depth == 0:
-            # print("Depth", depth)
-        # print("maxPlayer:", maxPlayer)
+
         moves = {}
         my_moves = safezone(state['me']['body'][0], grid, True)
         enemy_moves = {}
@@ -228,8 +226,6 @@ class Algorithm:
             if neck in moves:
                 moves.remove(neck)
             # print("enemy moves:", moves)
-        # print("me: ", state['me']['body'][1]['x'])
-        # print("target: ", state['target']['body'][1]['x'])
 
         # sometime it run overtime, try 4 first (5 --> 4)
         MAX_RECURSION_DEPTH = 4
@@ -283,26 +279,29 @@ class Algorithm:
                 if eating:
                     x = new_state['me']['body'][body_length]['x']
                     y = new_state['me']['body'][body_length]['y']
-                    print("====================================")
-                    print("I ATE FOOD!!!!")
-                    print("x: ", x)
-                    print("y: ", y)
                     new_state['me']['body'].append({"x": y, "y": x})
-                    print("My new state body after eating food:")
-                    print(new_state['me']['body'])
-                    print("====================================")
                     eating = False
 
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body'])
-                me_x = new_state['me']['body'][length-1]['x']
-                me_x_other = new_state['me']['body'][length - 2]['x']
-                me_y = new_state['me']['body'][length-1]['y']
-                me_y_other = new_state['me']['body'][length - 2]['y']
+                me_x = new_state['me']['body'][length]['x']
+                me_x_other = new_state['me']['body'][length - 1]['x']
+                me_y = new_state['me']['body'][length]['y']
+                me_y_other = new_state['me']['body'][length - 1]['y']
                 if length > 1 and me_x == me_x_other and me_y == me_y_other:
-                    new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '#'
+                    new_grid[new_state['me']['body'][length]['y']][new_state['me']['body'][length]['x']] = '#'
+                    print("==================================================================")
+                    print("the tail will stay in the same place because the snake just ate...")
+                    print("new_state['me']['body'][length]['y']:")
+                    print(new_state['me']['body'][length]['y'])
+                    print("new_state['me']['body'][length]['x']")
+                    print(new_state['me']['body'][length]['x'])
+                    print("==================================================================")
                 else:
-                    new_grid[new_state['me']['body'][length-1]['y']-2][new_state['me']['body'][length-1]['x']-2] = '*'
+                    new_grid[new_state['me']['body'][length]['y']][new_state['me']['body'][length]['x']] = '*'
+                    print("==================================================================")
+                    print("the tail is safe")
+                    print("==================================================================")
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
@@ -353,27 +352,20 @@ class Algorithm:
                     x = new_state['target']['body'][body_length]['x']
                     y = new_state['target']['body'][body_length]['y']
                     new_state['target']['body'].append({"x": y, "y": x})
-                    # print("====================================")
-                    # print("TARGET ATE FOOD!!!!")
-                    # print("x: ", x)
-                    # print("y: ", y)
-                    # print("TARGET BODY:")
-                    # print(new_state['target']['body'])
-                    # print("====================================")
                     eating = False
 
                 # print(new_state)
                 length = len(new_state['target']['body'])
-                target_x = new_state['target']['body'][length-1]['x']
-                target_x_other = new_state['target']['body'][length - 2]['x']
-                target_y = new_state['target']['body'][length-1]['y']
-                target_y_other = new_state['target']['body'][length - 2]['y']
+                target_x = new_state['target']['body'][length]['x']
+                target_x_other = new_state['target']['body'][length - 1]['x']
+                target_y = new_state['target']['body'][length]['y']
+                target_y_other = new_state['target']['body'][length - 1]['y']
 
 
                 if length > 1 and target_x == target_x_other and target_y == target_y_other:
-                    new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '#'
+                    new_grid[new_state['target']['body'][length]['y']][new_state['target']['body'][length]['x']] = '#'
                 else:
-                    new_grid[new_state['target']['body'][length-1]['y']-2][new_state['target']['body'][length-1]['x']-2] = '*'
+                    new_grid[new_state['target']['body'][length]['y']][new_state['target']['body'][length]['x']] = '*'
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
