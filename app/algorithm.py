@@ -284,21 +284,21 @@ class Algorithm:
 
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body'])
-                me_x = new_state['me']['body'][length]['x']
-                me_x_other = new_state['me']['body'][length - 1]['x']
-                me_y = new_state['me']['body'][length]['y']
-                me_y_other = new_state['me']['body'][length - 1]['y']
+                me_x = new_state['me']['body'][length - 1]['x']
+                me_x_other = new_state['me']['body'][length - 2]['x']
+                me_y = new_state['me']['body'][length - 1]['y']
+                me_y_other = new_state['me']['body'][length - 2]['y']
                 if length > 1 and me_x == me_x_other and me_y == me_y_other:
-                    new_grid[new_state['me']['body'][length]['y']][new_state['me']['body'][length]['x']] = '#'
+                    new_grid[me_y][me_x] = '#'
                     print("==================================================================")
                     print("the tail will stay in the same place because the snake just ate...")
-                    print("new_state['me']['body'][length]['y']:")
-                    print(new_state['me']['body'][length]['y'])
-                    print("new_state['me']['body'][length]['x']")
-                    print(new_state['me']['body'][length]['x'])
+                    print("me_y:")
+                    print(me_y)
+                    print("me_x")
+                    print(me_x)
                     print("==================================================================")
                 else:
-                    new_grid[new_state['me']['body'][length]['y']][new_state['me']['body'][length]['x']] = '*'
+                    new_grid[me_y][me_x] = '*'
                     print("==================================================================")
                     print("the tail is safe")
                     print("==================================================================")
@@ -356,16 +356,16 @@ class Algorithm:
 
                 # print(new_state)
                 length = len(new_state['target']['body'])
-                target_x = new_state['target']['body'][length]['x']
-                target_x_other = new_state['target']['body'][length - 1]['x']
-                target_y = new_state['target']['body'][length]['y']
-                target_y_other = new_state['target']['body'][length - 1]['y']
+                target_x = new_state['target']['body'][length - 1]['x']
+                target_x_other = new_state['target']['body'][length - 2]['x']
+                target_y = new_state['target']['body'][length - 1]['y']
+                target_y_other = new_state['target']['body'][length - 2]['y']
 
 
                 if length > 1 and target_x == target_x_other and target_y == target_y_other:
-                    new_grid[new_state['target']['body'][length]['y']][new_state['target']['body'][length]['x']] = '#'
+                    new_grid[target_y][target_x] = '#'
                 else:
-                    new_grid[new_state['target']['body'][length]['y']][new_state['target']['body'][length]['x']] = '*'
+                    new_grid[target_y][target_x] = '*'
 
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
