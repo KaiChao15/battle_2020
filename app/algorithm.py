@@ -284,11 +284,13 @@ class Algorithm:
                     x = new_state['me']['body'][body_length]['x']
                     y = new_state['me']['body'][body_length]['y']
                     print("====================================")
-                    print("ATE FOOD!!!!")
+                    print("I ATE FOOD!!!!")
                     print("x: ", x)
                     print("y: ", y)
-                    print("====================================")
                     new_state['me']['body'].append({"x": y, "y": x})
+                    print("My new state body after eating food:")
+                    print(new_state['me']['body'])
+                    print("====================================")
                     eating = False
 
                 # mark whether is safe spot or not
@@ -351,11 +353,13 @@ class Algorithm:
                     x = new_state['target']['body'][body_length]['x']
                     y = new_state['target']['body'][body_length]['y']
                     new_state['target']['body'].append({"x": y, "y": x})
-                    print("====================================")
-                    print("TARGET ATE FOOD!!!!")
-                    print("x: ", x)
-                    print("y: ", y)
-                    print("====================================")
+                    # print("====================================")
+                    # print("TARGET ATE FOOD!!!!")
+                    # print("x: ", x)
+                    # print("y: ", y)
+                    # print("TARGET BODY:")
+                    # print(new_state['target']['body'])
+                    # print("====================================")
                     eating = False
 
                 # print(new_state)
