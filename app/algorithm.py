@@ -282,7 +282,7 @@ class Algorithm:
                     new_state['me']['body'].append({"x": y, "y": x})
                     eating = False
 
-                print("eating status:". eating)
+                print("eating status:", eating)
 
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body'])
