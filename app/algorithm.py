@@ -293,7 +293,7 @@ class Algorithm:
                 me_y = new_state['me']['body'][length]['y']
                 me_y_other = new_state['me']['body'][length-1]['y']
                 print("me_x, me_x_other: ", me_x, ",", me_x_other)
-                print("me_y, me_y_other: ", me_x, ",", me_x_other)
+                print("me_y, me_y_other: ", me_y, ",", me_y_other)
                 print("=========================================")
                 if length > 1 and me_x == me_x_other and me_y == me_y_other:
                     new_grid[me_y-1][me_x-1] = '#'
