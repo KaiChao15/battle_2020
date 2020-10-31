@@ -284,7 +284,7 @@ class Algorithm:
                     eating = False
                     print("new state(ate):", new_state['me']['body'])
 
-                # mark whether is safe spot or not
+                # mark whether tail is safe spot or not
                 length = len(new_state['me']['body']) - 1
                 print("length: ", length)
                 me_x = new_state['me']['body'][length]['x']
@@ -293,12 +293,14 @@ class Algorithm:
                 me_y_other = new_state['me']['body'][length-1]['y']
                 print("me_x, me_x_other: ", me_x, ",", me_x_other)
                 print("me_y, me_y_other: ", me_y, ",", me_y_other)
-                print("=========================================")
-                if length > 1 and me_x == me_x_other and me_y == me_y_other:
-                    new_grid[me_y-1][me_x-1] = '#'
-                else:
-                    new_grid[me_y-1][me_x-1] = '*'
 
+                if length > 1 and me_x == me_x_other and me_y == me_y_other:
+                    new_grid[me_x-1][me_y-1] = '#'
+                    app.setup.Util.printMap(new_grid)
+                else:
+                    new_grid[me_x-1][me_y-1] = '*'
+
+                print("=========================================")
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
                 # print("Alpha moves choices: ", moves)
@@ -360,12 +362,13 @@ class Algorithm:
                 target_y_other = new_state['target']['body'][length-1]['y']
                 print("target_x, me_x_other: ", target_x, ",", target_x_other)
                 print("target_y, me_y_other: ", target_y, ",", target_y_other)
-                print("=========================================")
-                if length > 1 and target_x == target_x_other and target_y == target_y_other:
-                    new_grid[target_y-1][target_x-1] = '#'
-                else:
-                    new_grid[target_y-1][target_x-1] = '*'
 
+                if length > 1 and target_x == target_x_other and target_y == target_y_other:
+                    new_grid[target_x-1][target_y-1] = '#'
+                    app.setup.Util.printMap(new_grid)
+                else:
+                    new_grid[target_x-1][target_y-1] = '*'
+                print("=========================================")
                 # print out new map
                 # app.setup.Util.printMap(new_grid)
 
