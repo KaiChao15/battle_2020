@@ -276,21 +276,21 @@ class Algorithm:
                 new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
 
                 # if eating, add to snake's body
+                print("=========================================")
                 if eating:
                     x = new_state['me']['body'][body_length]['x']
                     y = new_state['me']['body'][body_length]['y']
                     new_state['me']['body'].append({"x": y, "y": x})
                     eating = False
-
-                print("eating status:", eating)
-
+                    print("new state(ate):", new_state)
+                else:
+                    print("new state(not eat):", new_state)
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body'])
                 me_x = new_state['me']['body'][length-1]['x']
                 me_x_other = new_state['me']['body'][length-2]['x']
                 me_y = new_state['me']['body'][length-1]['y']
                 me_y_other = new_state['me']['body'][length-2]['y']
-                print("=========================================")
                 print("me_x, me_x_other: ", me_x, ",", me_x_other)
                 print("me_y, me_y_other: ", me_x, ",", me_x_other)
                 print("=========================================")
