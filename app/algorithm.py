@@ -286,11 +286,11 @@ class Algorithm:
                 else:
                     print("new state(not eat):", new_state['me']['body'])
                 # mark whether is safe spot or not
-                length = len(new_state['me']['body'])
-                me_x = new_state['me']['body'][length-1]['x']
-                me_x_other = new_state['me']['body'][length-2]['x']
-                me_y = new_state['me']['body'][length-1]['y']
-                me_y_other = new_state['me']['body'][length-2]['y']
+                length = len(new_state['me']['body']) - 1
+                me_x = new_state['me']['body'][length]['x']
+                me_x_other = new_state['me']['body'][length-1]['x']
+                me_y = new_state['me']['body'][length]['y']
+                me_y_other = new_state['me']['body'][length-1]['y']
                 print("me_x, me_x_other: ", me_x, ",", me_x_other)
                 print("me_y, me_y_other: ", me_x, ",", me_x_other)
                 print("=========================================")
@@ -351,12 +351,11 @@ class Algorithm:
                     eating = False
 
                 # print(new_state)
-                length = len(new_state['target']['body'])
-                print("new length:", length)
-                target_x = new_state['target']['body'][length-1]['x']
-                target_x_other = new_state['target']['body'][length-2]['x']
-                target_y = new_state['target']['body'][length-1]['y']
-                target_y_other = new_state['target']['body'][length-2]['y']
+                length = len(new_state['target']['body']) - 1
+                target_x = new_state['target']['body'][length]['x']
+                target_x_other = new_state['target']['body'][length-1]['x']
+                target_y = new_state['target']['body'][length]['y']
+                target_y_other = new_state['target']['body'][length-1]['y']
                 print("=========================================")
                 print("target_x, target_x_other: ", target_x, ",", target_x_other)
                 print("target_y, target_y_other: ", target_y, ",", target_y_other)
