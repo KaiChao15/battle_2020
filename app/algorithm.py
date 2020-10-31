@@ -276,15 +276,14 @@ class Algorithm:
                 new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
 
                 # if eating, add to snake's body
-                print("=========================================")
+                print("===============me info==================")
                 if eating:
                     x = new_state['me']['body'][body_length]['x']
                     y = new_state['me']['body'][body_length]['y']
                     new_state['me']['body'].append({"x": x, "y": y})
                     eating = False
                     print("new state(ate):", new_state['me']['body'])
-                else:
-                    print("new state(not eat):", new_state['me']['body'])
+
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body']) - 1
                 print("length: ", length)
@@ -345,15 +344,13 @@ class Algorithm:
                 new_state['target']['body'].insert(0, moves[i])
                 new_grid[moves[i]['y']-1][moves[i]['x']-1] = '@'
 
-                print("=========================================")
+                print("===============target info=================")
                 if eating:
                     x = new_state['target']['body'][body_length]['x']
                     y = new_state['target']['body'][body_length]['y']
                     new_state['target']['body'].append({"x": x, "y": y})
                     eating = False
                     print("new state(ate):", new_state['target']['body'])
-                else:
-                    print("new state(not eat):", new_state['target']['body'])
 
                 # print(new_state)
                 length = len(new_state['target']['body']) - 1
