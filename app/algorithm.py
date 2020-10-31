@@ -280,7 +280,7 @@ class Algorithm:
                 if eating:
                     x = new_state['me']['body'][body_length]['x']
                     y = new_state['me']['body'][body_length]['y']
-                    new_state['me']['body'].append({"x": y, "y": x})
+                    new_state['me']['body'].append({"x": x, "y": y})
                     eating = False
                     print("new state(ate):", new_state['me']['body'])
                 else:
@@ -348,7 +348,7 @@ class Algorithm:
                 if eating:
                     x = new_state['target']['body'][body_length]['x']
                     y = new_state['target']['body'][body_length]['y']
-                    new_state['target']['body'].append({"x": y, "y": x})
+                    new_state['target']['body'].append({"x": x, "y": y})
                     eating = False
 
                 # print(new_state)
@@ -357,11 +357,6 @@ class Algorithm:
                 target_x_other = new_state['target']['body'][length-1]['x']
                 target_y = new_state['target']['body'][length]['y']
                 target_y_other = new_state['target']['body'][length-1]['y']
-                print("=========================================")
-                print("target_x, target_x_other: ", target_x, ",", target_x_other)
-                print("target_y, target_y_other: ", target_y, ",", target_y_other)
-                print("=========================================")
-
                 if length > 1 and target_x == target_x_other and target_y == target_y_other:
                     new_grid[target_y-1][target_x-1] = '#'
                 else:
