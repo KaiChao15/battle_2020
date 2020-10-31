@@ -287,6 +287,7 @@ class Algorithm:
                     print("new state(not eat):", new_state['me']['body'])
                 # mark whether is safe spot or not
                 length = len(new_state['me']['body']) - 1
+                print("length: ", length)
                 me_x = new_state['me']['body'][length]['x']
                 me_x_other = new_state['me']['body'][length-1]['x']
                 me_y = new_state['me']['body'][length]['y']
